@@ -1,0 +1,29 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LucideIcon } from "lucide-react";
+
+interface StatCardProps {
+  title: string;
+  value: string;
+  icon: LucideIcon;
+  trend?: "up" | "down" | "neutral";
+}
+
+export const StatCard = ({ title, value, icon: Icon, trend = "neutral" }: StatCardProps) => {
+  const trendColors = {
+    up: "text-success",
+    down: "text-destructive",
+    neutral: "text-muted-foreground",
+  };
+
+  return (
+    <Card className="hover:shadow-lg transition-shadow">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <Icon className={`h-5 w-5 ${trendColors[trend]}`} />
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+      </CardContent>
+    </Card>
+  );
+};
